@@ -1,0 +1,61 @@
+
+{% include "store/base.html" %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <style>
+
+
+        body{
+
+
+            background-color: gray;
+
+        }
+        
+
+
+
+    </style>
+
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout ">
+
+        <h3> <i class="fa fa-list-alt" aria-hidden="true"></i> &nbsp; My orders </h3>
+
+        <p> View all of your orders. </p>
+
+        <hr>
+
+
+    </div>
+
+    <br>
+
+    <div class="container bg-white shadow-md p-5 form-layout ">
+
+        {% for order in orders %}
+    <strong><i class="fa fa-list-alt" aria-hidden="true"></i> Order ID #{{ order.id }}</strong>
+    <br><br>
+    <p><strong>Date Ordered:</strong> {{ order.date_ordered }}</p>
+    <p><strong>Total Paid:</strong> €{{ order.amount_paid }}</p>
+    <p><strong>Shipping Address:</strong><br>{{ order.shipping_address|linebreaks }}</p>
+
+    <a href="{% url 'order-receipt' order.id %}" class="btn btn-primary">View Receipt</a>
+    <hr>
+{% empty %}
+    <p>No orders found.</p>
+{% endfor %}
+
+
+    </div>
+
+    <br>
+
+{% endblock %}
