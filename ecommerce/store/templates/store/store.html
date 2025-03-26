@@ -16,22 +16,20 @@
             <div class="col-lg-6 col-md-8 mx-auto">
                 
 
-                <h4> "Your Perfect Shopping Destination – CLOUDKART." </h4>
+                <h4> "Your Perfect Shopping Destination" </h4>
 
 
                 <br>
-                
-
-                <p class="lead text-muted">
-
-                    Your favorite brands, all in one place.
-
-                </p>
-
+                <p id="fashion-quote" class="lead text-muted">Loading fashion quote...</p>
 
                 <br>
         
                 <a href="{% url 'register' %}" class="btn btn-primary my-2" ><i class="fa fa-plus" aria-hidden="true"></i>Create an account </a>
+                <p class="lead text-muted">
+
+                    Browse our extensive collection.
+
+                </p>
                 
                 
             </div>
@@ -79,7 +77,20 @@
       </div>
     </div>
   </div>
-
+  <!--Fashion-quote API-->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("https://3cmcwij8pd.execute-api.eu-west-1.amazonaws.com/dev/fashion-quote")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("fashion-quote").innerText = data.quote;
+            })
+            .catch(error => {
+                document.getElementById("fashion-quote").innerText = "Style is confidence – stay bold!";
+                console.error("Failed to load quote:", error);
+            });
+    });
+</script>
 {% endblock %}
 
 
