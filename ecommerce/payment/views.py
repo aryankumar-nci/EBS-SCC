@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 import requests
+from django.contrib.auth.decorators import login_required
 
 from .models import ShippingAddress, Order, OrderItem
 from cart.cart import Cart
@@ -8,6 +9,7 @@ from cart.cart import Cart
 # PDF Generation API URL
 PDF_API_URL = "http://54.167.76.195/api/generate_pdf"
 
+@login_required(login_url='my-login')
 def checkout(request):
     if request.user.is_authenticated:
         try:
