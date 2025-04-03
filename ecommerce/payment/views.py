@@ -52,8 +52,8 @@ def complete_order(request):
                 price=item['price'], user=request.user if request.user.is_authenticated else None
             )
 
-        # Correctly clear the cart
-        cart.cart = {}  # Instead of cart.clear()
+        #  clear the cart
+        cart.cart = {}  
 
         return JsonResponse({'success': True, 'order_id': order.id})
 
@@ -85,7 +85,6 @@ def download_order_receipt(request, order_id):
         "total": str(order.amount_paid),
         "report_description": "Thank you for your purchase! Below are the details of your order.",
         
-        # ✅ Corrected header format (Dictionary instead of list)
         "report_table_data_header": {
             "column1": "Product Name",
             "column2": "Quantity",
@@ -93,7 +92,6 @@ def download_order_receipt(request, order_id):
             "column4": "Total Price"
         },
 
-        # ✅ Ensuring list of dictionaries for table body
         "report_table_data_body": [
             {
                 "column1": item.Product.title,
