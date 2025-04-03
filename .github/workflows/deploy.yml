@@ -47,4 +47,4 @@ jobs:
           deployment_package: "application.zip"
 
       - name: Success Message
-        run: echo "✅ Deployment to AWS Elastic Beanstalk successful!"
+        run: echo "Deployment to AWS Elastic Beanstalk successful!"
